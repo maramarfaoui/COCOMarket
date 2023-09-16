@@ -1,0 +1,72 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Catalog Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="custom-datatable">
+                        <div class="clearfix"></div>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Catalog Id</th>
+                                <th>Catalog Image</th>
+                                <th >Catalog Name</th>
+                                <th  >Catalog Description</th>
+                                <th>Date</th>
+                                <th  >Store Name</th>
+                                <th >Update/Delete</th>
+                                <th></th>
+
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let item of catalogList ">
+                                <td>
+                                    {{ item.catalogId }}
+
+                                </td>
+                                <td>
+                                    <div *ngFor="let image of item.catalogImages">
+                                        <img [src]="image.url"   style="width: 70px">
+                                    </div>
+                                </td>
+                                <td scope="row">
+                                    {{ item.catalogName }}
+                                </td>
+                                <td scope="row">
+                                    {{ item.catalogDescription }}
+                                </td>
+                                <td scope="row">
+                                    {{ item.date | date:'yyyy-MM-dd' }}
+                                </td>
+                                <td scope="row">
+                                    {{ item.storeName }}
+                                </td>
+
+
+                                <td scope="row">
+                                    <a  (click)="editCatalogDetails(item.catalogId)"  href="javascript:void(0)"><i class='fa fa-edit f-12'></i></a>&nbsp;
+                                    <a (click)="deleteCatalog(item.catalogId)" href="javascript:void(0)"><i class="fa fa-trash-o" ></i> &nbsp;&nbsp;&nbsp;</a>
+                                </td>
+                                <td>
+                                    <button  (click)="showCatalogsDetails(item.catalogId)" type="button" class="btn btn-info">details</button> &nbsp;&nbsp;&nbsp;
+                                </td>
+
+
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

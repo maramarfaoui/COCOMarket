@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Store Lists</h5>
+                </div>
+                <div class="card-body">
+                    <div id="batchDelete" class="custom-datatable">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Store Name</th>
+                                    <th scope="col" sortable="img"   >Image</th>
+                                    <th scope="col" sortable="entry_type" >Contact Information</th>
+                                    <th scope="col" sortable="email" >Store Email Address</th>
+                                    <th scope="col" sortable="category" >Category</th>
+                                    <th scope="col" sortable="location" >Store Locations</th>
+                                    <th scope="col" sortable="action" >Link</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let catgory of storeList">
+                                    <a (click)="showStoreDetails(catgory.storeId)" href="javascript:void(0)"><th scope="row">{{ catgory.storeName }}</th></a>
+                                    <td>
+                                        <div *ngFor="let image of catgory.storeImages">
+                                            <img [src]="image.url"   style="width: 70px">
+                                        </div>
+                                    </td>
+                                    <td>{{ catgory.contactInformation }}</td>
+                                    <td>{{ catgory.storeEmailAddress }}</td>
+                                    <td>{{ catgory.category}}</td>
+                                    <td>{{ catgory.storeLocations}}</td>
+                                    <td>{{ catgory.link}}</td>
+
+                                    <td>
+                                        <a (click)="editStoreDetails(catgory.storeId)" href="javascript:void(0)"><i class='fa fa-edit f-12'></i></a>&nbsp;
+                                        <a (click)="deleteStore(catgory.storeId)" href="javascript:void(0)"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

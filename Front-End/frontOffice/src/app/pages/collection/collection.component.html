@@ -1,0 +1,25 @@
+<app-breadcrumb [title]="'Collection'" [breadcrumb]="'Collection'"></app-breadcrumb>
+<!--section start-->
+<section class="collection section-b-space" *ngFor="let store of storeList">
+    <div class="container">
+        <div class="row partition-collection">
+            <div class="col-lg-3 col-md-6">
+                <div class="collection-block">
+                    <img [src]="store.storeImages[0].url" class="img-fluid" alt="">
+                    <div class="collection-content">
+                        <h4>{{store.category}}</h4>
+                        <h3>{{store.storeName}}</h3>
+                        <p>{{store.storeDescription}}</p>
+                       <div *ngIf="store.category == 'electronics'">
+                           <a (click)="gotoElectronicStoreProducts(store.storeId)" class="btn btn-outline">shop now !</a>
+                       </div>
+                        <div *ngIf="store.category == 'fashion'">
+                            <a (click)="gotoFashionStoreProducts(store.storeId)" class="btn btn-outline">shop now !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->

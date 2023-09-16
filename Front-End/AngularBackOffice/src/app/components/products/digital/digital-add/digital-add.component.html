@@ -1,0 +1,126 @@
+<form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+    <div class="container-fluid">
+        <div class="row product-adding">
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>General</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="digital-add needs-validation">
+                            <div class="form-group">
+                                <label for="validationCustom01" class="col-form-label pt-0"><span>*</span> Product Name</label>
+                                <input class="form-control" [(ngModel)]="product.title" name="name" id="validationCustom01" type="text" required="" >
+                            </div>
+                            <div class="form-group">
+                                <label for="validationCustomref" class="col-form-label pt-0"><span>*</span> Reference</label>
+                                <input class="form-control" [(ngModel)]="product.reference" id="validationCustomref" name="reference"  type="text" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="validationCustombrand" class="col-form-label pt-0"><span>*</span> Brand</label>
+                                <input class="form-control" id="validationCustombrand" name="ref" [(ngModel)]="product.brand" type="text" required="">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xl-3 col-sm-4">
+                                    <label for="validationstock" class="col-form-label pt-0"><span>*</span> Stock</label>
+                                </div>
+                                <div class="col-xl-8 col-sm-7">
+                                    <input class="form-control" name="stock" [(ngModel)]="product.stock" id="validationstock" type="number"
+                                           required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="validationCustomprice" class="col-form-label pt-0"><span>*</span> Price</label>
+                                <input class="form-control" id="validationCustomprice" name="price" [(ngModel)]="product.price" type="text" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="validationdiscount" class="col-form-label pt-0"><span>*</span> Discount<span>%</span></label>
+                                <input class="form-control" id="validationdiscount" name="dicount" [(ngModel)]="product.discount" type="number" required="">
+                            </div>
+                            <label class="col-form-label pt-0"> Product Upload</label>
+                            <div class="card-body dropzone-custom p-0">
+                                <ngx-dropzone class="dropzone-border" (change)="onSelect($event)">
+                                    <ngx-dropzone-label>
+                                        <div class="dz-message needsclick">
+                                            <i class="fa fa-cloud-upload"></i>
+                                            <h4 class="mb-0 f-w-600">Drop files here or click to upload.</h4>
+                                        </div>
+                                    </ngx-dropzone-label>
+                                    <ngx-dropzone-image-preview [file]="f.filefile" *ngFor="let f of array" [removable]="true" (removed)="onRemove(f)">
+                                        <img [src]="f.url" alt="">
+                                    </ngx-dropzone-image-preview>
+                                </ngx-dropzone>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card h-auto">
+                    <div class="card-header">
+                        <h5>Add Description</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="digital-add needs-validation">
+                            <div class="form-group mb-0">
+                                <div class="description-sm">
+                                    <textarea class="form-control" name="reviewText" [(ngModel)]="product.description" placeholder="Enter your description here" id="exampleFormControlTextarea1" rows="6"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Complimentary Infos</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="digital-add needs-validation">
+                            <div class="form-group">
+                                <label for="validationCustom05" class="col-form-label pt-0"> Showcase YouTube link Video</label>
+                                <input class="form-control" id="validationCustom05" name="linkYTB" [(ngModel)]="product.video" type="text" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Years Of Warranty</label>
+                                <div class="col-xl-8 col-sm-7">
+                                    <div class="qty-box1">
+                                        <div class="input-group">
+                                            <i class="fa fa-minus btnGtr1" (click)=decrement()></i>
+                                            <input class="touchspin1 text-center" name="counter" [value]="counter" type="text" [(ngModel)]="product.yearsOfWarranty" >
+                                            <i class="fa fa-plus btnLess1" (click)=increment()></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-0">
+                                <div class="product-buttons text-end mt-3">
+                                    <div *ngIf="store.storeId==null">
+                                        <button type="submit" class="btn btn-primary me-1">Add</button>
+                                    </div>
+                                    <button type="button" class="btn btn-light">Discard</button>
+                                    <div *ngIf="store.storeId > 0">
+                                        <button (click)="addProductToStore()" type="submit" class="btn btn-primary me-1">Affect To Store</button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="checkboxes">
+    <label>
+        <input type="checkbox" [(ngModel)]="isNew" (change)="onCheckboxChange('on sale', isNew)">
+        <span class="label-text">On Sale</span>
+    </label>
+    <label>
+        <input type="checkbox"  [(ngModel)]="isTrending" (change)="onCheckboxChange('new arrival', isTrending)">
+        <span class="label-text">Trending</span>
+    </label>
+
+</div>

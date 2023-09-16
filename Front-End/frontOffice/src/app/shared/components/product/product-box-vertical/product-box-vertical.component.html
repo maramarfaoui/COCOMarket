@@ -1,0 +1,14 @@
+<div class="media d-flex align-items-center">
+    <a (click)="showProductDetails(product.productId)">
+        <img [src]="product.image[0].url">
+    </a>
+	<div class="media-body align-self-center">
+		<div class="rating">
+			<bar-rating [rate]="5" [readOnly]="true"></bar-rating>
+		</div>
+        <a [routerLink]="['/shop/product/left/sidebar/', product.title.replace(' ', '-')]">
+            <h6>{{ product.title | titlecase }}</h6>
+        </a>
+		<h4>{{ product?.price * currency?.price | discount:product | currency:currency?.currency:'symbol' }}</h4>
+	</div>
+</div>
